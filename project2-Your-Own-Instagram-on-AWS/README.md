@@ -3,4 +3,4 @@
 
 2. 400 status code test link:  http://awseb-awseb-znnccngrbtoy-1825504287.us-east-1.elb.amazonaws.com/badrequest
 
-3. this project i am wait 5 second before clear the image out of folder
+3. this project i am wait 5 second before clear the image out of folder. if the image too large it could be failed because the server delete the file already. you could by pass this by delay the delete
