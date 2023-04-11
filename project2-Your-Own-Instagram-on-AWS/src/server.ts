@@ -45,8 +45,9 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
       // 4. deletes any files on the server on finish of the response
       setTimeout(async () => {
+        // if this code run immidiate we will got trouble when sendFile at step 3
         await deleteLocalFiles([filteredpath]);
-      }, 1000);
+      }, 5000);
     } else {
       res.status(400).send("image_url incorrect");
     }
