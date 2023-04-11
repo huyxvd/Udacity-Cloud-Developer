@@ -49,7 +49,7 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
         await deleteLocalFiles([filteredpath]);
       }, 5000);
     } else {
-      res.status(400).send("image_url incorrect");
+      res.send("image_url incorrect");
     }
   });
 
