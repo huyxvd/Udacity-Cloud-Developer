@@ -1,11 +1,11 @@
-import express from 'express';
+import express, { Express, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
 (async () => {
 
   // Init the Express application
-  const app = express();
+  const app: Express = express();
 
   // Set the network port
   const port = process.env.PORT || 8082;
@@ -33,7 +33,7 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
   // Root Endpoint
   // Displays a simple message to the user
-  app.get("/", async (req, res) => {
+  app.get("/", async (req: Request, res: Response) => {
     const imageUrl: string = req.query.image_url || '';
     // 1. validate the image_url query
     if (imageUrl) {
@@ -53,6 +53,11 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
     }
   });
 
+  // the reason need to put here is:
+  // if i make bad request on the first point the ebs status will alway failed dual to the alb health check
+  app.get("/badRequest", async (req: Request, res: Response) => {
+    res.status(400).send("bad request");
+  });
 
   // Start the Server
   app.listen(port, () => {
