@@ -1,0 +1,128 @@
+Microsoft Windows [Version 10.0.22621.1485]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\udacity\udacity-cloud-developer-cert\project2-Your-Own-Instagram-on-AWS>eb --version
+EB CLI 3.20.5 (Python 3.10.5 (tags/v3.10.5:f377153, Jun  6 2022, 16:14:13) [MSC v.1929 64 bit (AMD64)])
+
+D:\udacity\udacity-cloud-developer-cert\project2-Your-Own-Instagram-on-AWS>eb init
+
+Select a default region
+1) us-east-1 : US East (N. Virginia)
+2) us-west-1 : US West (N. California)
+3) us-west-2 : US West (Oregon)
+4) eu-west-1 : EU (Ireland)
+5) eu-central-1 : EU (Frankfurt)
+6) ap-south-1 : Asia Pacific (Mumbai)
+7) ap-southeast-1 : Asia Pacific (Singapore)
+8) ap-southeast-2 : Asia Pacific (Sydney)
+9) ap-northeast-1 : Asia Pacific (Tokyo)
+10) ap-northeast-2 : Asia Pacific (Seoul)
+11) sa-east-1 : South America (Sao Paulo)
+12) cn-north-1 : China (Beijing)
+13) cn-northwest-1 : China (Ningxia)
+14) us-east-2 : US East (Ohio)
+15) ca-central-1 : Canada (Central)
+16) eu-west-2 : EU (London)
+17) eu-west-3 : EU (Paris)
+18) eu-north-1 : EU (Stockholm)
+19) eu-south-1 : EU (Milano)
+20) ap-east-1 : Asia Pacific (Hong Kong)
+21) me-south-1 : Middle East (Bahrain)
+22) af-south-1 : Africa (Cape Town)
+23) ap-southeast-3 : Asia Pacific (Jakarta)
+24) ap-northeast-3 : Asia Pacific (Osaka)
+(default is 3): 1
+
+
+Enter Application Name
+(default is "project2-Your-Own-Instagram-on-AWS"): udagram-rutter-dev
+Application udagram-rutter-dev has been created.
+
+It appears you are using Node.js. Is this correct?
+(Y/n): y
+Select a platform branch.
+1) Node.js 18 running on 64bit Amazon Linux 2
+2) Node.js 16 running on 64bit Amazon Linux 2
+3) Node.js 14 running on 64bit Amazon Linux 2
+(default is 1): 2
+
+Cannot setup CodeCommit because there is no Source Control setup, continuing with initialization
+Do you want to set up SSH for your instances?
+(Y/n): n
+
+D:\udacity\udacity-cloud-developer-cert\project2-Your-Own-Instagram-on-AWS>eb create
+ERROR: ScannerError - while scanning for the next token
+found character '\t' that cannot start any token
+  in ".elasticbeanstalk\config.yml", line 6, column 1
+
+D:\udacity\udacity-cloud-developer-cert\project2-Your-Own-Instagram-on-AWS>eb create
+ERROR: ScannerError - while scanning for the next token
+found character '\t' that cannot start any token
+  in ".elasticbeanstalk\config.yml", line 6, column 1
+
+D:\udacity\udacity-cloud-developer-cert\project2-Your-Own-Instagram-on-AWS>eb create
+ERROR: ScannerError - while scanning for the next token
+found character '\t' that cannot start any token
+  in ".elasticbeanstalk\config.yml", line 6, column 1
+
+D:\udacity\udacity-cloud-developer-cert\project2-Your-Own-Instagram-on-AWS>eb create
+Enter Environment Name
+(default is udagram-rutter-dev-dev):
+Enter DNS CNAME prefix
+(default is udagram-rutter-dev-dev):
+
+Select a load balancer type
+1) classic
+2) application
+3) network
+(default is 2): 2
+
+
+Would you like to enable Spot Fleet requests for this environment? (y/N): n
+
+2.0+ Platforms require a service role. We will attempt to create one for you. You can specify your own role using the --service-role option.
+Type "view" to see the policy, or just press ENTER to continue:
+Uploading udagram-rutter-dev/app-230411_172508463056.zip to S3. This may take a while.
+Upload Complete.
+Environment details for: udagram-rutter-dev-dev
+  Application name: udagram-rutter-dev
+  Region: us-east-1
+  Deployed Version: app-230411_172508463056
+  Environment ID: e-4u9v9hmkm3
+  Platform: arn:aws:elasticbeanstalk:us-east-1::platform/Node.js 16 running on 64bit Amazon Linux 2/5.8.0
+  Tier: WebServer-Standard-1.0
+  CNAME: udagram-rutter-dev-dev.us-east-1.elasticbeanstalk.com
+  Updated: 2023-04-11 10:25:06.846000+00:00
+Printing Status:
+2023-04-11 10:25:05    INFO    createEnvironment is starting.
+2023-04-11 10:25:07    INFO    Using elasticbeanstalk-us-east-1-008004402707 as Amazon S3 storage bucket for environment data.
+2023-04-11 10:25:33    INFO    Created security group named: sg-0203ea941a30ff287
+2023-04-11 10:25:49    INFO    Created security group named: awseb-e-4u9v9hmkm3-stack-AWSEBSecurityGroup-WOV0B3SJWXTQ
+2023-04-11 10:25:49    INFO    Created Auto Scaling launch configuration named: awseb-e-4u9v9hmkm3-stack-AWSEBAutoScalingLaunchConfiguration-4nwe8xkWRV8H
+2023-04-11 10:25:49    INFO    Created target group named: arn:aws:elasticloadbalancing:us-east-1:008004402707:targetgroup/awseb-AWSEB-9UVTNCALRSAC/0e3303850cf5a2a2
+2023-04-11 10:26:20    INFO    Created Auto Scaling group named: awseb-e-4u9v9hmkm3-stack-AWSEBAutoScalingGroup-7VUJI7T86Q94
+2023-04-11 10:26:20    INFO    Waiting for EC2 instances to launch. This may take a few minutes.
+2023-04-11 10:26:35    INFO    Created Auto Scaling group policy named: arn:aws:autoscaling:us-east-1:008004402707:scalingPolicy:ea42038e-8ef4-4fee-a874-feffad08a0b5:autoScalingGroupName/awseb-e-4u9v9hmkm3-stack-AWSEBAutoScalingGroup-7VUJI7T86Q94:policyName/awseb-e-4u9v9hmkm3-stack-AWSEBAutoScalingScaleUpPolicy-CG3LHTMwwifk
+2023-04-11 10:26:35    INFO    Created Auto Scaling group policy named: arn:aws:autoscaling:us-east-1:008004402707:scalingPolicy:3d1a4dcd-9b07-4f5d-a233-96bde34c8b21:autoScalingGroupName/awseb-e-4u9v9hmkm3-stack-AWSEBAutoScalingGroup-7VUJI7T86Q94:policyName/awseb-e-4u9v9hmkm3-stack-AWSEBAutoScalingScaleDownPolicy-9J85kmPUjbsh
+2023-04-11 10:26:35    INFO    Created CloudWatch alarm named: awseb-e-4u9v9hmkm3-stack-AWSEBCloudwatchAlarmLow-ZCH9LDD7D6RD
+2023-04-11 10:26:35    INFO    Created CloudWatch alarm named: awseb-e-4u9v9hmkm3-stack-AWSEBCloudwatchAlarmHigh-1F68BDXJJE4U
+2023-04-11 10:27:40    INFO    Created load balancer named: arn:aws:elasticloadbalancing:us-east-1:008004402707:loadbalancer/app/awseb-AWSEB-ZNNCCNGRBTOY/b7e60fef908c82e1
+2023-04-11 10:27:40    INFO    Created Load Balancer listener named: arn:aws:elasticloadbalancing:us-east-1:008004402707:listener/app/awseb-AWSEB-ZNNCCNGRBTOY/b7e60fef908c82e1/0b7863c5ea9cc050
+2023-04-11 10:27:44    INFO    Instance deployment: You didn't specify a Node.js version in the 'package.json' file in your source bundle. The deployment didn't install a specific Node.js version.
+2023-04-11 10:27:55    INFO    Instance deployment completed successfully.
+2023-04-11 10:28:26    INFO    Application available at udagram-rutter-dev-dev.us-east-1.elasticbeanstalk.com.
+2023-04-11 10:28:27    INFO    Successfully launched environment: udagram-rutter-dev-dev
+
+
+D:\udacity\udacity-cloud-developer-cert\project2-Your-Own-Instagram-on-AWS>eb deploy
+Uploading udagram-rutter-dev/app-230411_174029502428.zip to S3. This may take a while.
+Upload Complete.
+2023-04-11 10:40:25    INFO    Environment update is starting.
+2023-04-11 10:40:29    INFO    Deploying new version to instance(s).
+2023-04-11 10:40:33    INFO    Instance deployment: You didn't specify a Node.js version in the 'package.json' file in your source bundle. The deployment didn't install a specific Node.js version.
+2023-04-11 10:40:41    INFO    Instance deployment completed successfully.
+2023-04-11 10:40:48    INFO    New application version was deployed to running EC2 instances.
+2023-04-11 10:40:48    INFO    Environment update completed successfully.
+
+
+D:\udacity\udacity-cloud-developer-cert\project2-Your-Own-Instagram-on-AWS>
