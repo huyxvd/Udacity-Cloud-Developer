@@ -1,0 +1,13 @@
+docker image prune --all
+docker rm -vf $(docker ps -aq)
+docker rmi -f $(docker images -aq)
+
+docker builder prune
+
+call docker-compose down
+
+call docker image prune -a -f
+
+call docker-compose -f docker-compose-build.yaml build --parallel
+
+call docker-compose up
