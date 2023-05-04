@@ -19,11 +19,11 @@ script:
   #tagging
   - docker tag udagram-api-feed huyvd94/udagram-api-feed:v1
   - docker tag udagram-api-user huyvd94/udagram-api-user:v1
-  - docker tag udagram-frontend huyvd94/udagram-frontend:v1
+  - docker tag udagram-frontend huyvd94/udagram-frontend:v2
   - docker tag reverseproxy huyvd94/reverseproxy:v1
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push huyvd94/udagram-api-feed:v1
   - docker push huyvd94/udagram-api-user:v1
-  - docker push huyvd94/udagram-frontend:v1
+  - docker push huyvd94/udagram-frontend:v2
   - docker push huyvd94/reverseproxy:v1
