@@ -4,12 +4,28 @@ import * as middy from 'middy'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 import { updateTodo } from '../../businessLogic/todos'
 import { createLogger } from '../../utils/logger'
+import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest'
 
 const logger = createLogger('updateTodoHandler')
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
+      
+      const parsedBody: UpdateTodoRequest = JSON.parse(event.body)
+      
+      if (parsedBody.name?.length <= 10) {
+        return {
+          statusCode: 400,
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          },
+          body: JSON.stringify({
+            error: 'name must be longer than 10 character'
+          })
+        }
+      }
+
       const todoId = event.pathParameters.todoId
 
       if (!event.body || !todoId) {

@@ -4,12 +4,28 @@ import * as middy from 'middy'
 import { cors } from 'middy/middlewares'
 import { createTodo } from '../../businessLogic/todos'
 import { createLogger } from '../../utils/logger'
+import { CreateTodoRequest } from '../../requests/CreateTodoRequest'
 
 const logger = createLogger('createTodoHandler')
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
+      
+    const parsedBody: CreateTodoRequest = JSON.parse(event.body)
+
+      if (parsedBody.name?.length <= 10) {
+        return {
+          statusCode: 400,
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          },
+          body: JSON.stringify({
+            error: 'name must be longer than 10 character'
+          })
+        }
+      }
+      
       const todoItem = await createTodo(event)
 
       logger.info('createdTodo', todoItem)
