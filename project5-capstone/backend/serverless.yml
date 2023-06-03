@@ -1,6 +1,6 @@
 org: huyxvd
 app: todo-udagram
-service: serverless-udagram-app-2
+service: serverless-udagram-app-with-node-16
 
 plugins:
   - serverless-webpack
@@ -9,7 +9,7 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs16.x
   profile: default
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
@@ -21,11 +21,27 @@ provider:
   environment:
     TODOS_TABLE: Todos-${self:provider.stage}
     TODOS_CREATED_AT_INDEX: CreatedAtIndex
-    ATTACHMENT_S3_BUCKET: serverless-todo-app-haha1-${self:provider.stage}
+    ATTACHMENT_S3_BUCKET: serverless-todo-app-haha3-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
 
   logs:
     restApi: true
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - s3:PutObject
+          - s3:GetObject
+        Resource: 'arn:aws:s3:::${self:provider.environment.ATTACHMENT_S3_BUCKET}/*'
+      - Effect: Allow
+        Action:
+          - dynamodb:updateItem
+        Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}'
+      - Effect: 'Allow'
+        Action:
+          - 'xray:PutTraceSegments'
+          - 'xray:PutTelemetryRecords'
+        Resource:
+          - '*'
 
 functions:
   Auth:
@@ -127,22 +143,7 @@ functions:
           path: todos/{todoId}/attachment
           cors: true
           authorizer: Auth
-    iamRoleStatements:
-      - Effect: 'Allow'
-        Action:
-          - s3:PutObject
-          - s3:GetObject
-        Resource: 'arn:aws:s3:::${self:provider.environment.ATTACHMENT_S3_BUCKET}/*'
-      - Effect: Allow
-        Action:
-          - dynamodb:updateItem
-        Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}'
-      - Effect: 'Allow'
-        Action:
-          - 'xray:PutTraceSegments'
-          - 'xray:PutTelemetryRecords'
-        Resource:
-          - '*'
+
 
 resources:
   Resources:
